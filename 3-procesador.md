@@ -10,6 +10,12 @@ Asignar núcleos de CPU específicos:
 ```
 
 **¿Como saber el numero de procesadores virtuales que tiene una máquina?**
+
+Utilizando el comando nproc
+```
+docker run --rm <imagen_base>  nproc
+```
+
 ## COMPLETAR
 
 ## Ejemplos
