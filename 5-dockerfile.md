@@ -53,17 +53,30 @@ docker build -t <nombre imagen>:<tag> .
 ### Ejecutar el archivo Dockerfile y construir una imagen en la versión 1.0
 No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
-
+docker build -t miapache:1.0 .
 ```
 
 **¿Cuántos pasos se han ejecutado?**
+
+Sse ejecturaon 10 pasos. 
+<img width="1305" height="223" alt="image" src="https://github.com/user-attachments/assets/64c166cd-390c-4c41-845a-e34d9ce32f83" />
+
 # RESPONDER 
 
 ### Inspeccionar la imagen creada
 # COMPLETAR CON UNA CAPTURA
 
+<img width="970" height="757" alt="image" src="https://github.com/user-attachments/assets/dc9704f7-035e-4fcd-b5ff-0524d2ee1ad2" />
+
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
+
+<img width="1268" height="444" alt="image" src="https://github.com/user-attachments/assets/46cebde5-35de-494c-b0ad-2524882f3358" />
+
+
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+
+Se ejecutaron 10 pasos igual que la anterior imagen, pero Docker ahora está utilizando caché de la anterior reconstrucción, y el tiempo de demora es menor. 
+<img width="1318" height="308" alt="image" src="https://github.com/user-attachments/assets/dd29a0a9-eef2-446d-a928-d883a103c434" />
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -75,19 +88,27 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 
 ### Crear un contenedor a partir de las imagen creada, mapear todos los puertos
 ```
-
+docker run -d --name contPrac4 -p 8080:80 mi_apache:v2
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
 # COMPLETAR CON LA RESPUESTA
 
+El puerto host que se utilizó es el 8080. 
+
+<img width="1237" height="287" alt="image" src="https://github.com/user-attachments/assets/859b04cb-5826-4288-a7a6-67a990742387" />
+
 **¿Qué es una imagen huérfana?**
 # COMPLETAR CON LA RESPUESTA
+
+Una imagen huérfana (conocida en la terminología oficial de Docker como dangling image) es una capa de imagen que existe en el almacenamiento local de Docker pero que ya no está asociada a ninguna etiqueta (tag). Estas imágenes no tienen nombre ni etiqueta (aparecen como <none>:<none> cuando ejecutas el comando docker images -a) y, por lo tanto, no se pueden usar para crear nuevos contenedores.
 
 ### Identificar imágenes huérfanas
 ```
 docker images -f "dangling=true"
 ```
+<img width="468" height="54" alt="image" src="https://github.com/user-attachments/assets/d60b305f-2498-474a-b49c-b5304de0f596" />
+
 
 ### Listar los IDS de las imágenes huérfanas
 ```
